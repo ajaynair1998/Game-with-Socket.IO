@@ -16,6 +16,7 @@ export default function Control(props) {
   const [socket, setSocket] = useState(null);
   const [joined, setJoined] = useState(false);
   const [playerName, setName] = useState("player");
+  const [waiting,setWaiting] =useState(false)
 
   //   Connext to a socket on mount
   useEffect(() => {
@@ -48,11 +49,13 @@ export default function Control(props) {
       }}
       p={2}
     >
-      {!joined && (
+      {!joined && !waiting && (
         <EnterName setName={setName} connectToSocket={connectToSocket} />
       )}
 
-      {joined && <Game socket={socket} />}
+      {joined && !waiting && <Game socket={socket} />}
+
+      {waiting &&  <div>Waiting</div>}
     </Box>
   );
 }

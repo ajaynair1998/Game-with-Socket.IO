@@ -8,11 +8,21 @@ import Button from "@mui/material/Button";
 let defaultAnswers = ["One", "Two", "Three"];
 
 export default function Game(props) {
+  const [socket, setSocket] = useState(props.socket);
   const [question, setQuestion] = useState("");
   const [timeLeft, setTimeLeft] = useState(10);
   const [choices, setChoices] = useState(defaultAnswers);
   const [roomId, setRoomId] = useState("");
+  const [questionNumber, setQuestionNumber] = useState(1);
 
+  useEffect(() => {
+    socket.on("game", (data) => {
+      console.log(data);
+      
+    });
+  },[socket]);
+
+  
   return (
     <Box>
       <Typography variant="h5" textAlign="center">
@@ -34,7 +44,9 @@ export default function Game(props) {
         }}
       >
         <Box className="question-container">
-          <Typography variant="h5">What is the first Number ?</Typography>
+          <Typography variant="h5">
+            {questionNumber}. What is the first Number ?
+          </Typography>
         </Box>
         <Box
           className="choices-container"
@@ -42,7 +54,7 @@ export default function Game(props) {
         >
           {choices.map((item) => {
             return (
-              <Button variant="contained" key={item}>
+              <Button variant="outlined" key={item}>
                 {item}
               </Button>
             );
