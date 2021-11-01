@@ -10,9 +10,6 @@ export default function App() {
     <Router>
       <Switch>
         <Route exact path="/">
-          <HomePage />
-        </Route>
-        <Route exact path="/joinAsPlayer">
           <Control />
         </Route>
       </Switch>

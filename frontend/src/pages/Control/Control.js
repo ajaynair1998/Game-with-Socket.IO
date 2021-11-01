@@ -10,6 +10,7 @@ import io from "socket.io-client";
 
 // import different pages
 import EnterName from "./components/EnterName";
+import Game from "./components/Game";
 
 export default function Control(props) {
   const [socket, setSocket] = useState(null);
@@ -29,7 +30,7 @@ export default function Control(props) {
     const newSocket = io(`http://localhost:5000`);
     console.log(newSocket);
     newSocket.emit("id", { playerName: playerName });
-
+    setJoined(true);
     setSocket(newSocket);
   };
 
@@ -39,10 +40,7 @@ export default function Control(props) {
         width: "100vw",
         height: "100vh",
         backgroundColor: "white",
-        // "&:hover": {
-        //   backgroundColor: "primary.main",
-        //   opacity: [0.9, 0.8, 0.7],
-        // },
+
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
@@ -53,6 +51,8 @@ export default function Control(props) {
       {!joined && (
         <EnterName setName={setName} connectToSocket={connectToSocket} />
       )}
+
+      {joined && <Game socket={socket} />}
     </Box>
   );
 }
