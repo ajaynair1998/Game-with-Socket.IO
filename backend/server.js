@@ -25,7 +25,8 @@ const io = new Server(server, { cors: { origin: "*" } });
 
 //initializing the socket io connection
 io.on("connection", (socket) => {
-  // console.log(socket);
+  console.log(socket.id);
+
   //for a new user joining the room
   socket.on("joinRoom", ({ username, roomname }) => {
     //* create user
