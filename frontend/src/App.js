@@ -1,30 +1,17 @@
-import React, { useEffect, useState } from "react";
-import io from "socket.io-client";
+import React from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-function App() {
-  const [socket, setSocket] = useState(null);
+// pages
+import HomePage from "./pages/HomePage/HomePage";
 
-  useEffect(() => {
-    const newSocket = io(`http://localhost:5000`);
-    console.log(newSocket)
-    newSocket.emit("id",{data:"helllo"})
-    return () => newSocket.close();
-  }, [setSocket]);
-
-  const sendData = (username,roomname) => {
-    if (username !== "" && roomname !== "") {
-      socket.emit("joinRoom", { username: "ajay", roomname: "1" });
-      //if empty error message pops up and returns to the same page
-    } else {
-      alert("username and roomname are must !");
-      window.location.reload();
-    }
-  };
+export default function App() {
   return (
-    <div className="App">
-      <p>Hi</p>
-    </div>
+    <Router>
+      <Switch>
+        <Route path="/">
+          <HomePage />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
-
-export default App;
