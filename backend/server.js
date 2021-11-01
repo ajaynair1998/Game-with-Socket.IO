@@ -25,6 +25,7 @@ const io = new Server(server, { cors: { origin: "*" } });
 
 //initializing the socket io connection
 io.on("connection", (socket) => {
+  // console.log(socket);
   //for a new user joining the room
   socket.on("joinRoom", ({ username, roomname }) => {
     //* create user
@@ -48,6 +49,9 @@ io.on("connection", (socket) => {
     });
   });
 
+  socket.on("id", (socket) => {
+    console.log(socket);
+  });
   //when the user exits the room
   socket.on("disconnect", () => {
     // //the user is deleted from array of users and a left room message displayed

@@ -7,6 +7,7 @@ function App() {
   useEffect(() => {
     const newSocket = io(`http://localhost:5000`);
     console.log(newSocket)
+    newSocket.emit("id",{data:"helllo"})
     return () => newSocket.close();
   }, [setSocket]);
 
