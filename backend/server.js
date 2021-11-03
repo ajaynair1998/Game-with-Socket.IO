@@ -4,7 +4,11 @@ const app = express();
 const cors = require("cors");
 
 // game function which handles the main logic
-let { game } = require("./libs/Game/game");
+let { gameSetup, Rooms } = require("./libs/Game/game");
+let { Lobby } = require("./libs/Game/Lobby");
+
+let lobbies = new Lobby();
+let rooms = new Rooms();
 
 const port = 5000;
 
@@ -25,7 +29,6 @@ const io = new Server(server, { cors: { origin: "*" } });
 //initializing the socket io connection
 io.on("connection", (socket) => {
   console.log(socket.id);
-  game(socket)
 
   //for a new user joining the room
   socket.on("joinRoom", ({ username, roomname }) => {
@@ -50,8 +53,9 @@ io.on("connection", (socket) => {
     });
   });
 
-  socket.on("id", (socket) => {
-    console.log(socket);
+  socket.on("id", ({ playerName }) => {
+    // console.log(socket, "from id route", lobbies);
+    gameSetup(socket, lobbies, rooms, playerName,io);
   });
 
   // setInterval(() => socket.emit("data", { count: "counting" }), 1000);

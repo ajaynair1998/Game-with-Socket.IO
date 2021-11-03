@@ -6,6 +6,7 @@ import { Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 
 export default function EnterName(props) {
+  const [playerName, setName] = useState("player");
   return (
     <Box
       sx={{
@@ -21,11 +22,11 @@ export default function EnterName(props) {
         label="Player Name"
         variant="outlined"
         onChange={(e) => {
-          props.setName(e.target.value);
+          setName(e.target.value);
         }}
       />
 
-      <Button variant="outlined" onClick={() => props.connectToSocket()}>
+      <Button variant="outlined" onClick={() => props.connectToSocket(playerName)}>
         JOIN
       </Button>
     </Box>

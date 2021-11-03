@@ -1,8 +1,7 @@
-function countDownFromTen(socket){
-    let count=10
-    let returnValue
-
-    function increment(){
-        
-    }
+function countDown(delay) {
+  return new Promise(function (resolve) {
+    setTimeout(resolve, delay * 1000);
+  });
 }
+
+module.exports = { countDown };

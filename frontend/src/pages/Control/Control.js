@@ -15,8 +15,8 @@ import Game from "./components/Game";
 export default function Control(props) {
   const [socket, setSocket] = useState(null);
   const [joined, setJoined] = useState(false);
-  const [playerName, setName] = useState("player");
-  const [waiting,setWaiting] =useState(false)
+
+  const [waiting, setWaiting] = useState(false);
 
   //   Connext to a socket on mount
   useEffect(() => {
@@ -27,7 +27,7 @@ export default function Control(props) {
   }, [socket]);
 
   // connect to socket with the given name
-  const connectToSocket = (PlayerName) => {
+  const connectToSocket = (playerName) => {
     const newSocket = io(`http://localhost:5000`);
     console.log(newSocket);
     newSocket.emit("id", { playerName: playerName });
@@ -49,13 +49,11 @@ export default function Control(props) {
       }}
       p={2}
     >
-      {!joined && !waiting && (
-        <EnterName setName={setName} connectToSocket={connectToSocket} />
-      )}
+      {!joined && !waiting && <EnterName connectToSocket={connectToSocket} />}
 
       {joined && !waiting && <Game socket={socket} />}
 
-      {waiting &&  <div>Waiting</div>}
+      {waiting && <div>Waiting</div>}
     </Box>
   );
 }
