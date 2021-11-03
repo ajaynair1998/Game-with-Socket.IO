@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { Typography } from "@mui/material";
 import Button from "@mui/material/Button";
+import LinearDeterminate from "./Counter";
 
 let defaultAnswers = ["One", "Two", "Three"];
 
@@ -18,22 +19,21 @@ export default function Game(props) {
   useEffect(() => {
     socket.on("game", (data) => {
       console.log(data);
-      
     });
-  },[socket]);
+  }, [socket]);
 
-  
+  let changeStateOfGame = (data) => {
+    
+  };
+
   return (
     <Box>
-      <Typography variant="h5" textAlign="center">
+      <Typography variant="h5" textAlign="center" mb={4}>
         {" "}
         Room id : {roomId}
       </Typography>
 
-      <Typography variant="h5" textAlign="center" sx={{ mb: "5rem" }}>
-        {" "}
-        Time Left : {timeLeft}
-      </Typography>
+      <LinearDeterminate />
 
       <Box
         sx={{
