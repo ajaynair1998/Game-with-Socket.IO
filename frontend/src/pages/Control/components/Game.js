@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { Typography } from "@mui/material";
 import Button from "@mui/material/Button";
-import LinearDeterminate from "./Counter";
+import LinearDeterminate from "./ProgressBar";
 
 let defaultAnswers = ["One", "Two", "Three"];
 
@@ -15,25 +15,60 @@ export default function Game(props) {
   const [choices, setChoices] = useState(defaultAnswers);
   const [roomId, setRoomId] = useState("");
   const [questionNumber, setQuestionNumber] = useState(1);
+  const [gameState, setGameState] = useState("lobby");
+  const [progressBar, setProgressBar] = useState(0);
+  const [endGameState, setEndGameState] = useState("undetermined");
 
   useEffect(() => {
     socket.on("game", (data) => {
+      console.log(gameState);
       console.log(data);
+      changeStateOfGame(data);
     });
   }, [socket]);
 
   let changeStateOfGame = (data) => {
-    
+    if (data.state === "start") {
+      setGameState("start");
+      setChoices(data.answers);
+      setQuestion(data.question);
+      setRoomId(data.roomId);
+      setQuestionNumber(data.questionNumber);
+      setProgressBar(0);
+    }
+
+    if (data.state === "stop") {
+      setGameState("stop");
+      setEndGameState("won");
+    }
   };
 
   return (
     <Box>
+      {gameState === "start" && (
+        <GameInStartState
+          roomId={roomId}
+          questionNumber={questionNumber}
+          question={question}
+          choices={choices}
+          progress={progressBar}
+        />
+      )}
+
+      {gameState === "lobby" && <LobbyScreen />}
+      <EndGameScreen endGameState={endGameState} />
+    </Box>
+  );
+}
+function GameInStartState(props) {
+  return (
+    <Box>
       <Typography variant="h5" textAlign="center" mb={4}>
         {" "}
-        Room id : {roomId}
+        Room id : {props.roomId}
       </Typography>
 
-      <LinearDeterminate />
+      {<LinearDeterminate progress={props.progress} />}
 
       <Box
         sx={{
@@ -45,14 +80,14 @@ export default function Game(props) {
       >
         <Box className="question-container">
           <Typography variant="h5">
-            {questionNumber}. What is the first Number ?
+            {props.questionNumber}. {props.question}
           </Typography>
         </Box>
         <Box
           className="choices-container"
           sx={{ display: "flex", flexDirection: "column", gap: "3rem" }}
         >
-          {choices.map((item) => {
+          {props.choices.map((item) => {
             return (
               <Button variant="outlined" key={item}>
                 {item}
@@ -61,6 +96,36 @@ export default function Game(props) {
           })}
         </Box>
       </Box>
+    </Box>
+  );
+}
+
+function LobbyScreen(props) {
+  return (
+    <Box>
+      <Typography variant="h3">
+        Please wait until another player joins
+      </Typography>
+    </Box>
+  );
+}
+
+function WaitTillNextQuestionScreen(props) {
+  return (
+    <Box>
+      <Typography variant="h3">Wait for the next questionl</Typography>
+    </Box>
+  );
+}
+
+function EndGameScreen(props) {
+  return (
+    <Box>
+      {props.endGameState === "won" && <Typography>You Have Won</Typography>}
+      {props.endGameState === "lost" && (
+        <Typography>You have lost the game</Typography>
+      )}
+      {props.endGameState === "undetermined" && null}
     </Box>
   );
 }

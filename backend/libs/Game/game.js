@@ -28,7 +28,7 @@ async function game(io, room) {
       questionNumber: 1,
       question: "Whats your age ?",
       answers: ["21", "22", "23"],
-      questionId: "some-id-here",
+      questionId: "1",
     });
 
   await countDown(10);
@@ -38,10 +38,10 @@ async function game(io, room) {
     .emit("game", {
       roomId: room.roomId,
       state: "start",
-      questionNumber: 1,
+      questionNumber: 2,
       question: "Whats your name ?",
       answers: ["ajay", "baba", "yaga"],
-      questionId: "some-id-here",
+      questionId: "2",
     });
 
   await countDown(10);
@@ -51,10 +51,10 @@ async function game(io, room) {
     .emit("game", {
       roomId: room.roomId,
       state: "start",
-      questionNumber: 1,
+      questionNumber: 3,
       question: "Whats your placfe ?",
       answers: ["alapuzha", "ekm", "someplace"],
-      questionId: "some-id-here",
+      questionId: "3",
     });
 
   await countDown(10);
@@ -64,10 +64,10 @@ async function game(io, room) {
     .emit("game", {
       roomId: room.roomId,
       state: "start",
-      questionNumber: 1,
+      questionNumber: 4,
       question: "Whats your color ?",
       answers: ["blue", "baba", "green"],
-      questionId: "some-id-here",
+      questionId: "4",
     });
 
   await countDown(10);
