@@ -1,7 +1,7 @@
 let { countDown } = require("../Timer/timer");
 
 // main game function which controls the users and the game
-function gameSetup(socket, lobbies, rooms, playerName, io) {
+function gameSetup(socket, lobbies, rooms, playerName, io, scorecards) {
   let lobbyToStartGameIn;
   let player = new Player(socket.id, playerName);
   if (!lobbies.isReadyToStart) {
@@ -13,12 +13,17 @@ function gameSetup(socket, lobbies, rooms, playerName, io) {
     let newRoom = new Room(lobbyToStartGameIn);
     console.log(lobbyToStartGameIn, "started ->", newRoom);
     // Start the game for the current Filled lobby
-    game(io, newRoom);
+    game(io, newRoom, scorecards);
   }
+
+  // on recieving each scores
 }
 
 // Controls a single game instance
-async function game(io, room) {
+async function game(io, room, scorecards) {
+  // add this room to scoreCards
+  scorecards.startTakingScores(room);
+
   // Send start message to the room on filled state
   io.to(room.playerOne.id)
     .to(room.playerTwo.id)
@@ -30,7 +35,7 @@ async function game(io, room) {
       answers: ["21", "22", "23"],
       questionId: "1",
     });
-
+  console.log(scorecards);
   await countDown(10);
 
   io.to(room.playerOne.id)

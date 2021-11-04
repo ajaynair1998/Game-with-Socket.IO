@@ -6,9 +6,11 @@ const cors = require("cors");
 // game function which handles the main logic
 let { gameSetup, Rooms } = require("./libs/Game/game");
 let { Lobby } = require("./libs/Game/Lobby");
+let { Scorecards } = require("./libs/ScoreCards/scorecards");
 
 let lobbies = new Lobby();
 let rooms = new Rooms();
+let scorecards = new Scorecards();
 
 const port = 5000;
 
@@ -55,7 +57,7 @@ io.on("connection", (socket) => {
 
   socket.on("id", ({ playerName }) => {
     // console.log(socket, "from id route", lobbies);
-    gameSetup(socket, lobbies, rooms, playerName,io);
+    gameSetup(socket, lobbies, rooms, playerName, io, scorecards);
   });
 
   // setInterval(() => socket.emit("data", { count: "counting" }), 1000);
