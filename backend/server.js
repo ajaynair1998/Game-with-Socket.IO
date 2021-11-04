@@ -60,6 +60,10 @@ io.on("connection", (socket) => {
     gameSetup(socket, lobbies, rooms, playerName, io, scorecards);
   });
 
+  // each answer from the player comes in
+  socket.on("answer", ({ playerId, roomId, questionId, selectedChoice }) => {
+    console.log(playerId, roomId, questionId, selectedChoice);
+  });
   // setInterval(() => socket.emit("data", { count: "counting" }), 1000);
   // socket.emit("data", { data: "hello from server" });
   //when the user exits the room

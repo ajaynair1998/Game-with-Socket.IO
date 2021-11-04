@@ -43,6 +43,15 @@ export default function Game(props) {
     }
   };
 
+  let sendAnswerToServer = (choice) => {
+    socket.emit("answer", {
+      playerId: socket.id,
+      roomId: roomId,
+      selectedChoice: choice,
+      questionId: questionNumber,
+    });
+  };
+
   return (
     <Box>
       {gameState === "start" && (
@@ -52,6 +61,7 @@ export default function Game(props) {
           question={question}
           choices={choices}
           progress={progressBar}
+          sendAnswerToServer={sendAnswerToServer}
         />
       )}
 
@@ -87,9 +97,13 @@ function GameInStartState(props) {
           className="choices-container"
           sx={{ display: "flex", flexDirection: "column", gap: "3rem" }}
         >
-          {props.choices.map((item) => {
+          {props.choices.map((item, index) => {
             return (
-              <Button variant="outlined" key={item}>
+              <Button
+                variant="outlined"
+                key={item}
+                onClick={() => props.sendAnswerToServer(index + 1)}
+              >
                 {item}
               </Button>
             );
