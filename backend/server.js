@@ -4,7 +4,7 @@ const app = express();
 const cors = require("cors");
 
 // game function which handles the main logic
-let { gameSetup, Rooms } = require("./libs/Game/game");
+let { gameSetup, Rooms } = require("./libs/Game/Game");
 let { Lobby } = require("./libs/Game/Lobby");
 let { Scorecards } = require("./libs/ScoreCards/scorecards");
 let { trackScores } = require("./libs/Score-Checking/Tracking-Scores");

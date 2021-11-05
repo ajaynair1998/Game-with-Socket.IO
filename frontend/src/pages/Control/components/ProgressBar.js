@@ -14,7 +14,7 @@ export default function LinearDeterminate(props) {
 
         return oldProgress + 10;
       });
-    }, 1000);
+    }, 900);
 
     return () => {
       clearInterval(timer);

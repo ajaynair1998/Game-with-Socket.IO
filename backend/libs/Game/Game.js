@@ -77,14 +77,13 @@ async function game(io, room, scorecards) {
 
   await countDown(10);
 
-  
+  let gameInfo = scorecards.findTheWinner(room.roomId);
 
   io.to(room.playerOne.id).to(room.playerTwo.id).emit("game", {
     roomId: room.roomId,
     state: "stop",
+    info: gameInfo,
   });
-
-  
 }
 
 // Class for storing the player info when recieving each socket connection

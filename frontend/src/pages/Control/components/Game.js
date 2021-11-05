@@ -39,7 +39,13 @@ export default function Game(props) {
 
     if (data.state === "stop") {
       setGameState("stop");
-      setEndGameState("won");
+      if (data.info.winner === socket.id && !data.info.draw) {
+        setEndGameState("won");
+      } else if (data.info.loser === socket.id && !data.info.draw) {
+        setEndGameState("lost");
+      } else if (data.info.draw) {
+        setEndGameState("draw");
+      }
     }
   };
 
@@ -142,6 +148,10 @@ function EndGameScreen(props) {
       {props.endGameState === "lost" && (
         <Typography>You have lost the game</Typography>
       )}
+      {props.endGameState === "draw" && (
+        <Typography>The Game is a draw</Typography>
+      )}
+
       {props.endGameState === "undetermined" && null}
     </Box>
   );
