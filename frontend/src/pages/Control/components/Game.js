@@ -50,6 +50,7 @@ export default function Game(props) {
       selectedChoice: choice,
       questionId: questionNumber,
     });
+    setGameState("waiting");
   };
 
   return (
@@ -64,6 +65,8 @@ export default function Game(props) {
           sendAnswerToServer={sendAnswerToServer}
         />
       )}
+
+      {gameState === "waiting" && <WaitTillNextQuestionScreen />}
 
       {gameState === "lobby" && <LobbyScreen />}
       <EndGameScreen endGameState={endGameState} />
@@ -102,7 +105,7 @@ function GameInStartState(props) {
               <Button
                 variant="outlined"
                 key={item}
-                onClick={() => props.sendAnswerToServer(index + 1)}
+                onClick={() => props.sendAnswerToServer(index)}
               >
                 {item}
               </Button>
@@ -127,7 +130,7 @@ function LobbyScreen(props) {
 function WaitTillNextQuestionScreen(props) {
   return (
     <Box>
-      <Typography variant="h3">Wait for the next questionl</Typography>
+      <Typography variant="h3">Wait for the next question</Typography>
     </Box>
   );
 }

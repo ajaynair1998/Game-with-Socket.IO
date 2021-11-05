@@ -77,10 +77,14 @@ async function game(io, room, scorecards) {
 
   await countDown(10);
 
+  
+
   io.to(room.playerOne.id).to(room.playerTwo.id).emit("game", {
     roomId: room.roomId,
     state: "stop",
   });
+
+  
 }
 
 // Class for storing the player info when recieving each socket connection
