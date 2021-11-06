@@ -1,23 +1,4 @@
-let { countDown } = require("../Timer/timer");
-
-// main game function which controls the users and the game
-function gameSetup(socket, lobbies, rooms, playerName, io, scorecards) {
-  let lobbyToStartGameIn;
-  let player = new Player(socket.id, playerName);
-  if (!lobbies.isReadyToStart) {
-    lobbies.addPlayer = player;
-  }
-
-  if (lobbies.isReadyToStart) {
-    lobbyToStartGameIn = lobbies.startGame();
-    let newRoom = new Room(lobbyToStartGameIn);
-    console.log(lobbyToStartGameIn, "started ->", newRoom);
-    // Start the game for the current Filled lobby
-    game(io, newRoom, scorecards);
-  }
-
-  // on recieving each scores
-}
+let { countDown } = require("../Timer");
 
 // Controls a single game instance
 async function game(io, room, scorecards) {
@@ -86,38 +67,4 @@ async function game(io, room, scorecards) {
   });
 }
 
-// Class for storing the player info when recieving each socket connection
-class Player {
-  constructor(id, name) {
-    this.id = id;
-    this.name = name;
-  }
-}
-
-class Rooms {
-  constructor() {
-    this.rooms = {};
-  }
-}
-
-class Room {
-  constructor([playerOne, playerTwo]) {
-    this.roomId = playerOne.id;
-    this.playerOne = playerOne;
-    this.playerTwo = playerTwo;
-    this.pointsPlayerOne = 0;
-    this.pointsPlayerTwo = 0;
-    this.winner = null;
-    this.loser = null;
-  }
-
-  addPointPlayerOne() {
-    this.pointsPlayerOne += 1;
-  }
-
-  addPointPlayerTwo() {
-    this.pointsPlayerTwo += 1;
-  }
-}
-
-module.exports = { gameSetup, Rooms };
+module.exports = { game };

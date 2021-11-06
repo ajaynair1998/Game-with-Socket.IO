@@ -4,14 +4,13 @@ const app = express();
 const cors = require("cors");
 
 // game function which handles the main logic
-let { gameSetup, Rooms } = require("./libs/Game/Game");
-let { Lobby } = require("./libs/Game/Lobby");
-let { Scorecards } = require("./libs/ScoreCards/scorecards");
-let { trackScores } = require("./libs/Score-Checking/Tracking-Scores");
-const { restart } = require("nodemon");
+let { gameSetup } = require("./libs/GameSetup");
+
+let { Lobby } = require("./libs/Lobby");
+let { Scorecards } = require("./libs/ScoreCards");
+let { trackScores } = require("./libs/Score-Checking");
 
 let lobbies = new Lobby();
-let rooms = new Rooms();
 let scorecards = new Scorecards();
 
 const port = 5000;
@@ -41,7 +40,7 @@ io.on("connection", (socket) => {
 
   socket.on("id", ({ playerName }) => {
     // console.log(socket, "from id route", lobbies);
-    gameSetup(socket, lobbies, rooms, playerName, io, scorecards);
+    gameSetup(socket, lobbies, playerName, io, scorecards);
   });
 
   // each answer from the player comes in
