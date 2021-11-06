@@ -59,7 +59,14 @@ export default function TextMobileStepper(props) {
           alignItems: "center",
         }}
       >
-        <Box sx={{ maxWidth: 400, flexGrow: 1 }}>
+        <Box
+          sx={{
+            maxWidth: 400,
+            flexGrow: 1,
+            bgcolor: "white",
+            borderRadius: "8px",
+          }}
+        >
           <Paper
             square
             elevation={0}
@@ -69,6 +76,8 @@ export default function TextMobileStepper(props) {
               height: 50,
               pl: 2,
               bgcolor: "primary.main",
+              borderTopLeftRadius: "8px",
+              borderTopRightRadius: "8px",
             }}
           >
             <Typography sx={{ color: "white" }}>
@@ -113,7 +122,12 @@ export default function TextMobileStepper(props) {
             steps={maxSteps}
             position="static"
             activeStep={activeStep}
-            sx={{ bgcolor: "primary.main" }}
+            sx={{
+              bgcolor: "primary.main",
+              borderBottomLeftRadius: "8px",
+              borderBottomRightRadius: "8px",
+              color: "white",
+            }}
             nextButton={
               <Button
                 size="small"

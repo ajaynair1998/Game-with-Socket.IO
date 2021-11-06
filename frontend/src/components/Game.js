@@ -60,7 +60,7 @@ export default function Game(props) {
   };
 
   return (
-    <Box>
+    <Box sx={{ color: "white", p: 2 }}>
       {gameState === "start" && (
         <GameInStartState
           roomId={roomId}
@@ -81,7 +81,7 @@ export default function Game(props) {
 }
 function GameInStartState(props) {
   return (
-    <Box>
+    <Box p={2}>
       <Typography variant="h5" textAlign="center" mb={4}>
         {" "}
         Room id : {props.roomId}

@@ -25,7 +25,7 @@ function HomePage() {
   };
 
   return (
-    <div className="App">
+    <div className="App" style={{ backgroundColor: "black" }}>
       {lobbies && <TextMobileStepper lobbies={lobbies} />}
       {!lobbies && (
         <Box

@@ -14,6 +14,12 @@ export default function EnterName(props) {
         flexDirection: "column",
         display: "flex",
         textAlign: "center",
+        backgroundColor: "white",
+        height: "300px",
+        width: "300px",
+        p: 3,
+        pt: 5,
+        borderRadius: "8px",
       }}
     >
       <Typography>Enter Your Name</Typography>

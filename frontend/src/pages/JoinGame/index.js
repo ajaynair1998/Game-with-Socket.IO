@@ -35,12 +35,13 @@ export default function Control(props) {
       sx={{
         width: "100vw",
         height: "100vh",
-        backgroundColor: "white",
+        backgroundColor: "black",
 
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
+        paddingLeft: 0,
       }}
       p={2}
     >
