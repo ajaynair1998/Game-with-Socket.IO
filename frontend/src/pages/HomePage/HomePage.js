@@ -1,30 +1,53 @@
 import React, { useEffect, useState } from "react";
+import { Box } from "@mui/system";
 import io from "socket.io-client";
 import { styled } from "@mui/material/styles";
+import { Button } from "@mui/material";
+import { Typography } from "@mui/material";
 import { Link } from "react-router-dom";
+import axios from "axios";
+
+import TextMobileStepper from "../components/LobbyCard";
 
 function HomePage() {
-  const [socket, setSocket] = useState(null);
+  const [lobbies, setLobbies] = useState(null);
 
   useEffect(() => {
-    const newSocket = io(`http://localhost:5000`);
-    console.log(newSocket);
-    newSocket.emit("id", { data: "helllo" });
-    return () => newSocket.close();
-  }, [setSocket]);
+    getAllLobbies();
+  }, []);
 
-  const sendData = (username, roomname) => {
-    if (username !== "" && roomname !== "") {
-      socket.emit("joinRoom", { username: "ajay", roomname: "1" });
-      //if empty error message pops up and returns to the same page
-    } else {
-      alert("username and roomname are must !");
-      window.location.reload();
-    }
+  let getAllLobbies = async () => {
+    let response = await axios.get("http://localhost:5000/scores");
+    console.log(response);
+    let { data } = response;
+
+    let checkIfScoresExist =
+      data.scores.length > 0 ? setLobbies(data.scores) : null;
   };
+
   return (
     <div className="App">
-      <p>Hi</p>
+      {lobbies && <TextMobileStepper lobbies={lobbies} />}
+      {!lobbies && (
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            height: "100vh",
+            alignItems: "center",
+          }}
+        >
+          <Box sx={{ display: "flex", flexDirection: "column", gap: "50px" }}>
+            <Typography variant="h6">No Rooms currently in Play</Typography>
+            <Link sx={{ width: "100%", display: "inline-block" }} to="/game">
+              <Button variant="contained" sx={{ width: "100%" }}>
+                Join a room
+              </Button>
+            </Link>
+          </Box>
+        </Box>
+      )}
     </div>
   );
 }

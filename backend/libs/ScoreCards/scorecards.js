@@ -22,16 +22,19 @@ class Scorecards {
     let selectedRoom = this.scores[roomId];
 
     if (selectedRoom.pointsPlayerOne > selectedRoom.pointsPlayerTwo) {
+      selectedRoom.winner = selectedRoom.playerOne.name;
       return {
         winner: selectedRoom.playerOne.id,
         loser: selectedRoom.playerTwo.id,
       };
     } else if (selectedRoom.pointsPlayerOne < selectedRoom.pointsPlayerTwo) {
+      selectedRoom.winner = selectedRoom.playerTwo.name;
       return {
         loser: selectedRoom.playerOne.id,
         winner: selectedRoom.playerTwo.id,
       };
     } else {
+      selectedRoom.draw = true;
       return {
         loser: selectedRoom.playerOne.id,
         winner: selectedRoom.playerTwo.id,
