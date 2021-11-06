@@ -12,9 +12,9 @@ class Scorecards {
     let selectedRoom = this.scores[roomId];
 
     if (selectedRoom.playerOne.id === playerId) {
-      selectedRoom.pointsPlayerOne = selectedRoom.pointsPlayerOne + 1;
+      selectedRoom.pointsPlayerOne = selectedRoom.pointsPlayerOne + 10;
     } else {
-      selectedRoom.pointsPlayerTwo = selectedRoom.pointsPlayerTwo + 1;
+      selectedRoom.pointsPlayerTwo = selectedRoom.pointsPlayerTwo + 10;
     }
   }
 
