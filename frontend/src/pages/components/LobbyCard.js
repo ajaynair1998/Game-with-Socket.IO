@@ -26,13 +26,19 @@ export default function TextMobileStepper(props) {
 
   return (
     <Grid
-      sx={{ display: "flex", flexDirection: "row-reverse", height: "100vh" }}
+      sx={{
+        display: "flex",
+        flexDirection: "row-reverse",
+        height: "100vh",
+        flexWrap: "wrap",
+      }}
     >
       <Grid
         item
         md={6}
         lg={6}
-        p={3}
+        px={3}
+        xs={12}
         sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
       >
         <Link sx={{ width: "100%", display: "inline-block" }} to="/game">
@@ -43,10 +49,10 @@ export default function TextMobileStepper(props) {
       </Grid>
       <Grid
         item
-        xs={6}
-        md={12}
+        xs={12}
+        md={6}
         lg={6}
-        p={3}
+        px={3}
         sx={{
           display: "flex",
           justifyContent: "center",
