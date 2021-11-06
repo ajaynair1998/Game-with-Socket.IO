@@ -1,22 +1,17 @@
 // This is the parent component which handles everything related to sockets
 
-import { Link } from "react-router-dom";
 import React from "react";
 import { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import { Typography } from "@mui/material";
 import io from "socket.io-client";
 
 // import different pages
-import EnterName from "./components/EnterName";
-import Game from "./components/Game";
+import EnterName from "../../components/PlayerName";
+import Game from "../../components/Game";
 
 export default function Control(props) {
   const [socket, setSocket] = useState(null);
   const [joined, setJoined] = useState(false);
-
-  const [waiting, setWaiting] = useState(false);
 
   //   Connext to a socket on mount
   useEffect(() => {
@@ -49,11 +44,9 @@ export default function Control(props) {
       }}
       p={2}
     >
-      {!joined && !waiting && <EnterName connectToSocket={connectToSocket} />}
+      {!joined && <EnterName connectToSocket={connectToSocket} />}
 
-      {joined && !waiting && <Game socket={socket} />}
-
-      {waiting && <div>Waiting</div>}
+      {joined && <Game socket={socket} />}
     </Box>
   );
 }

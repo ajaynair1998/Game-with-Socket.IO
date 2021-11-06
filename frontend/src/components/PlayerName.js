@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { Typography } from "@mui/material";
@@ -26,7 +26,10 @@ export default function EnterName(props) {
         }}
       />
 
-      <Button variant="outlined" onClick={() => props.connectToSocket(playerName)}>
+      <Button
+        variant="outlined"
+        onClick={() => props.connectToSocket(playerName)}
+      >
         JOIN
       </Button>
     </Box>

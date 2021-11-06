@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
+
 import { Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 import LinearDeterminate from "./ProgressBar";
@@ -11,7 +11,7 @@ let defaultAnswers = ["One", "Two", "Three"];
 export default function Game(props) {
   const [socket, setSocket] = useState(props.socket);
   const [question, setQuestion] = useState("");
-  const [timeLeft, setTimeLeft] = useState(10);
+
   const [choices, setChoices] = useState(defaultAnswers);
   const [roomId, setRoomId] = useState("");
   const [questionNumber, setQuestionNumber] = useState(1);

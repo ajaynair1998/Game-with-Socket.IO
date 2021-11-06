@@ -2,8 +2,8 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 // pages
-import HomePage from "./pages/HomePage/HomePage";
-import Control from "./pages/Control/Control";
+import HomePage from "./pages/HomePage";
+import Control from "./pages/JoinGame";
 
 export default function App() {
   return (

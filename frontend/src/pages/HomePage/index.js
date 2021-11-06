@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Box } from "@mui/system";
-import io from "socket.io-client";
-import { styled } from "@mui/material/styles";
+
 import { Button } from "@mui/material";
 import { Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-import TextMobileStepper from "../components/LobbyCard";
+import TextMobileStepper from "../../components/Lobbies";
 
 function HomePage() {
   const [lobbies, setLobbies] = useState(null);
