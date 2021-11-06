@@ -39,9 +39,9 @@ function HomePage() {
         >
           <Box sx={{ display: "flex", flexDirection: "column", gap: "50px" }}>
             <Typography variant="h6">No Rooms currently in Play</Typography>
-            <Link sx={{ width: "100%", display: "inline-block" }} to="/game">
+            <Link style={{ width: "100%", textDecoration: "none" }} to="/game">
               <Button variant="contained" sx={{ width: "100%" }}>
-                Join a room
+                <Typography>Join a room</Typography>
               </Button>
             </Link>
           </Box>
