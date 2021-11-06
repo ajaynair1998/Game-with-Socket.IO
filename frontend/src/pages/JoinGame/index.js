@@ -12,6 +12,7 @@ import Game from "../../components/Game";
 export default function Control(props) {
   const [socket, setSocket] = useState(null);
   const [joined, setJoined] = useState(false);
+  const [playerName, setPlayerName] = useState("default");
 
   //   Connext to a socket on mount
   useEffect(() => {
@@ -28,6 +29,7 @@ export default function Control(props) {
     newSocket.emit("id", { playerName: playerName });
     setJoined(true);
     setSocket(newSocket);
+    setPlayerName(playerName);
   };
 
   return (
@@ -47,7 +49,7 @@ export default function Control(props) {
     >
       {!joined && <EnterName connectToSocket={connectToSocket} />}
 
-      {joined && <Game socket={socket} />}
+      {joined && <Game socket={socket} playerName={playerName} />}
     </Box>
   );
 }

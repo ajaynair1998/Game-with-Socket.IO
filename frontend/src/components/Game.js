@@ -71,13 +71,17 @@ export default function Game(props) {
           choices={choices}
           progress={progressBar}
           sendAnswerToServer={sendAnswerToServer}
+          playerName={props.playerName}
         />
       )}
 
       {gameState === "waiting" && <WaitTillNextQuestionScreen />}
 
       {gameState === "lobby" && <LobbyScreen />}
-      <EndGameScreen endGameState={endGameState} />
+      <EndGameScreen
+        endGameState={endGameState}
+        playerName={props.playerName}
+      />
     </Box>
   );
 }
@@ -87,6 +91,10 @@ function GameInStartState(props) {
       <Typography variant="h5" textAlign="center" mb={4}>
         {" "}
         Room id : {props.roomId}
+      </Typography>
+      <Typography variant="h5" textAlign="center" mb={4}>
+        {" "}
+        Player Name : {props.playerName}
       </Typography>
 
       {<LinearDeterminate progress={props.progress} />}
@@ -146,12 +154,29 @@ function WaitTillNextQuestionScreen(props) {
 function EndGameScreen(props) {
   return (
     <Box>
-      {props.endGameState === "won" && <Typography>You Have Won</Typography>}
+      {props.endGameState === "won" && (
+        <>
+          <Typography sx={{ textAlign: "center" }}>
+            {props.playerName}
+          </Typography>
+          <Typography>You Have Won</Typography>
+        </>
+      )}
       {props.endGameState === "lost" && (
-        <Typography>You have lost the game</Typography>
+        <>
+          <Typography sx={{ textAlign: "center" }}>
+            {props.playerName}
+          </Typography>
+          <Typography>You have lost the game</Typography>
+        </>
       )}
       {props.endGameState === "draw" && (
-        <Typography>The Game is a draw</Typography>
+        <>
+          <Typography sx={{ textAlign: "center" }}>
+            {props.playerName}
+          </Typography>
+          <Typography>The Game is a draw</Typography>
+        </>
       )}
 
       {props.endGameState === "undetermined" && null}
