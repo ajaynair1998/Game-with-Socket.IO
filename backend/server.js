@@ -8,6 +8,7 @@ let { gameSetup, Rooms } = require("./libs/Game/Game");
 let { Lobby } = require("./libs/Game/Lobby");
 let { Scorecards } = require("./libs/ScoreCards/scorecards");
 let { trackScores } = require("./libs/Score-Checking/Tracking-Scores");
+const { restart } = require("nodemon");
 
 let lobbies = new Lobby();
 let rooms = new Rooms();
@@ -25,6 +26,11 @@ app.use(
 
 let server = app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
+});
+
+app.get("/scores", (req, res) => {
+  let allScoreCards = scorecards.findAllScores();
+  res.status(200).json({ scores: allScoreCards });
 });
 
 const io = new Server(server, { cors: { origin: "*" } });

@@ -39,6 +39,17 @@ class Scorecards {
       };
     }
   }
+
+  findAllScores() {
+    let roomsCurrentlyInPlay = Object.keys(this.scores);
+    let roomDetails = [];
+
+    for (let key of roomsCurrentlyInPlay) {
+      roomDetails.push(this.scores[key]);
+    }
+
+    return roomDetails;
+  }
 }
 
 module.exports = { Scorecards };
