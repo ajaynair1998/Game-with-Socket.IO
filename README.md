@@ -14,7 +14,7 @@ Game might end in a draw if both players score equal points
 - In the frontend folder `yarn install` to install all dependencies
 - In the backend folder `npm install` to install all dependencies
 - In the frontend folder `yarn start` to start the development server
-- In the backend folder `yarn start` to start the development server
+- In the backend folder `npm start` to start the development server
 
 ## License
 GNU General Public License v3.0 © [ajaynair1998]()
