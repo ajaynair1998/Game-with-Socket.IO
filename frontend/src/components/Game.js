@@ -18,6 +18,7 @@ export default function Game(props) {
   const [gameState, setGameState] = useState("lobby");
   const [progressBar, setProgressBar] = useState(0);
   const [endGameState, setEndGameState] = useState("undetermined");
+  const [questionId, setQuestionId] = useState(null);
 
   useEffect(() => {
     socket.on("game", (data) => {
@@ -35,6 +36,7 @@ export default function Game(props) {
       setRoomId(data.roomId);
       setQuestionNumber(data.questionNumber);
       setProgressBar(0);
+      setQuestionId(data.questionId);
     }
 
     if (data.state === "stop") {
@@ -54,7 +56,7 @@ export default function Game(props) {
       playerId: socket.id,
       roomId: roomId,
       selectedChoice: choice,
-      questionId: questionNumber,
+      questionId: questionId,
     });
     setGameState("waiting");
   };
@@ -136,7 +138,7 @@ function LobbyScreen(props) {
 function WaitTillNextQuestionScreen(props) {
   return (
     <Box>
-      <Typography variant="h3">Wait for the next question</Typography>
+      <Typography variant="h3">Wait...</Typography>
     </Box>
   );
 }

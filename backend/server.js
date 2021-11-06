@@ -9,6 +9,7 @@ let { gameSetup } = require("./libs/GameSetup");
 let { Lobby } = require("./libs/Lobby");
 let { Scorecards } = require("./libs/ScoreCards");
 let { trackScores } = require("./libs/Score-Checking");
+let { questions } = require("./libs/Questions/questions");
 
 let lobbies = new Lobby();
 let scorecards = new Scorecards();

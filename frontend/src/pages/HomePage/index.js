@@ -37,8 +37,16 @@ function HomePage() {
             alignItems: "center",
           }}
         >
-          <Box sx={{ display: "flex", flexDirection: "column", gap: "50px" }}>
-            <Typography variant="h6">No Rooms currently in Play</Typography>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "50px",
+            }}
+          >
+            <Typography variant="h6" sx={{ color: "white" }}>
+              No Rooms currently in Play
+            </Typography>
             <Link style={{ width: "100%", textDecoration: "none" }} to="/game">
               <Button variant="contained" sx={{ width: "100%" }}>
                 <Typography>Join a room</Typography>
