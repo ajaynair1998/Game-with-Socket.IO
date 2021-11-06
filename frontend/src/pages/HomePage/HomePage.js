@@ -22,7 +22,7 @@ function HomePage() {
     let { data } = response;
 
     let checkIfScoresExist =
-      data.scores.length > 0 ? setLobbies(data.scores) : null;
+      data.scores.length > 0 ? setLobbies(data.scores.reverse()) : null;
   };
 
   return (
