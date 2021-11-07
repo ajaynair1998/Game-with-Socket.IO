@@ -1,5 +1,6 @@
 let { countDown } = require("../../utils/Timer");
 let { questions } = require("../Questions/questions");
+const moment = require("moment");
 
 // Controls a single game instance
 async function game(io, room, scorecards, database) {
@@ -73,6 +74,7 @@ async function game(io, room, scorecards, database) {
     info: gameInfo,
   });
 
+  room.date = moment().format("MMMM Do YYYY, h:mm:ss a");
   await database.addGameToHistory(room);
 }
 

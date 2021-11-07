@@ -26,7 +26,7 @@ export default function Control(props) {
   const connectToSocket = (playerName) => {
     const newSocket = io(`http://localhost:5000`);
     console.log(newSocket);
-    newSocket.emit("id", { playerName: playerName });
+    newSocket.emit("join-game", { playerName: playerName });
     setJoined(true);
     setSocket(newSocket);
     setPlayerName(playerName);

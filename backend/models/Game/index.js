@@ -8,6 +8,7 @@ const schema = new mongoose.Schema({
   pointsPlayerTwo: Number,
   winner: String,
   loser: String,
+  date: String,
 });
 
 let Game = mongoose.model("game", schema);
