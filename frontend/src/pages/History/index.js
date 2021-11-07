@@ -1,5 +1,4 @@
 import React from "react";
-import Box from "@mui/material/Box";
 import styled from "@emotion/styled";
 import ExpandableCard from "../../components/ExpandableCard";
 import { useEffect, useState } from "react";
@@ -53,7 +52,7 @@ const Histories = styled.div`
   }
 `;
 
-export default function History(props) {
+export default function History() {
   let [history, setHistory] = useState(null);
   async function getHistory() {
     try {

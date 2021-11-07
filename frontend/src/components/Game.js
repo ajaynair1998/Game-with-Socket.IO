@@ -62,7 +62,7 @@ export default function Game(props) {
   };
 
   return (
-    <Box sx={{ color: "white", p: 2 }}>
+    <Box sx={{ color: "white", p: 2, maxWidth: "40rem" }}>
       {gameState === "start" && (
         <GameInStartState
           roomId={roomId}
@@ -87,7 +87,7 @@ export default function Game(props) {
 }
 function GameInStartState(props) {
   return (
-    <Box p={2}>
+    <Box p={2} sx={{ maxWidth: "100%" }}>
       <Typography variant="h5" textAlign="center" mb={4}>
         {" "}
         Room id : {props.roomId}
