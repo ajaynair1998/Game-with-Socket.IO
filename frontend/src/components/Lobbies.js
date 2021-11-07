@@ -39,11 +39,22 @@ export default function TextMobileStepper(props) {
         lg={6}
         px={3}
         xs={12}
-        sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: "3rem",
+        }}
       >
         <Link sx={{ width: "100%", display: "inline-block" }} to="/game">
           <Button variant="contained" sx={{ width: "100%" }}>
             Join a room
+          </Button>
+        </Link>
+        <Link sx={{ width: "100%", display: "inline-block" }} to="/history">
+          <Button variant="contained" sx={{ width: "100%" }}>
+            View History
           </Button>
         </Link>
       </Grid>
