@@ -4,6 +4,8 @@ import styled from "@emotion/styled";
 import ExpandableCard from "../../components/ExpandableCard";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Typography } from "@mui/material";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const HistoryContainer = styled.div`
   height: 100vh;
@@ -34,6 +36,7 @@ export default function History(props) {
   async function getHistory() {
     try {
       let response = await axios.get("http://localhost:5000/history");
+      setHistory(response.data.history);
       console.log(response.data.history);
     } catch (err) {}
   }
@@ -44,14 +47,31 @@ export default function History(props) {
   return (
     <HistoryContainer>
       <Histories>
-        <ExpandableCard
-          playerOne={"ajay"}
-          date={"13 November"}
-          playerTwo={"Terminator"}
-          draw={true}
-          playerOnePoints={3}
-          playerTwoPoints={5}
-        />
+        {history && (
+          <>
+            {history.map((item) => {
+              return (
+                <ExpandableCard
+                  playerOne={item.playerOne.name}
+                  date={item.date}
+                  playerTwo={item.playerTwo.name}
+                  draw={item.draw}
+                  playerOnePoints={item.pointsPlayerOne}
+                  playerTwoPoints={item.pointsPlayerTwo}
+                />
+              );
+            })}
+          </>
+        )}
+
+        {!history && (
+          <div style={{ textAlign: "center", paddingTop: "3rem" }}>
+            <Typography variant="h5" paragraph>
+              Loading...
+            </Typography>
+            <CircularProgress />
+          </div>
+        )}
       </Histories>
     </HistoryContainer>
   );
