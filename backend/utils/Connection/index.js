@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const { Game } = require("../Game/index");
+const { Game } = require("../../models/Game/index");
 require("dotenv").config();
 
 class ConnectionToDatabase {

@@ -4,13 +4,13 @@ const app = express();
 const cors = require("cors");
 
 // game function which handles the main logic
-let { gameSetup } = require("./libs/GameSetup");
+let { gameSetup } = require("./services/GameSetup");
 
-let { Lobby } = require("./libs/Lobby");
-let { Scorecards } = require("./libs/ScoreCards");
-let { trackScores } = require("./libs/Score-Checking");
-let { questions } = require("./libs/Questions/questions");
-let { ConnectionToDatabase } = require("./models/Connection");
+let { Lobby } = require("./services/Lobby");
+let { Scorecards } = require("./services/ScoreCards");
+let { trackScores } = require("./services/Score-Checking");
+let { questions } = require("./services/Questions/questions");
+let { ConnectionToDatabase } = require("./utils/Connection");
 
 let lobbies = new Lobby();
 let scorecards = new Scorecards();
