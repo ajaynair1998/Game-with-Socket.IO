@@ -1,4 +1,4 @@
-let { countDown } = require("../Timer");
+let { countDown } = require("../../utils/Timer");
 let { questions } = require("../Questions/questions");
 
 // Controls a single game instance
