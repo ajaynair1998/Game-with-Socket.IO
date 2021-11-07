@@ -2,7 +2,7 @@ let { countDown } = require("../Timer");
 let { questions } = require("../Questions/questions");
 
 // Controls a single game instance
-async function game(io, room, scorecards) {
+async function game(io, room, scorecards, database) {
   let shuffleFunction = questions();
   let questionsInShuffledOrder = shuffleFunction();
 
@@ -72,6 +72,8 @@ async function game(io, room, scorecards) {
     state: "stop",
     info: gameInfo,
   });
+
+  await database.addGameToHistory(room);
 }
 
 module.exports = { game };

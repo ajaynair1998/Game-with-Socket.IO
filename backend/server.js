@@ -10,9 +10,11 @@ let { Lobby } = require("./libs/Lobby");
 let { Scorecards } = require("./libs/ScoreCards");
 let { trackScores } = require("./libs/Score-Checking");
 let { questions } = require("./libs/Questions/questions");
+let { ConnectionToDatabase } = require("./models/Connection");
 
 let lobbies = new Lobby();
 let scorecards = new Scorecards();
+let database = new ConnectionToDatabase();
 
 const port = 5000;
 
@@ -41,7 +43,7 @@ io.on("connection", (socket) => {
 
   socket.on("id", ({ playerName }) => {
     // console.log(socket, "from id route", lobbies);
-    gameSetup(socket, lobbies, playerName, io, scorecards);
+    gameSetup(socket, lobbies, playerName, io, scorecards, database);
   });
 
   // each answer from the player comes in
